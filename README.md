@@ -121,18 +121,18 @@ return: drag has overtaken drift. The key qualitative fact is that
 drift is linear in L while drag is quadratic, so however small drag
 looks at L=1, there is always a leverage level past which it dominates.
 
-## Tutorial notebook
+## Tutorial
 
-For a full guided walkthrough of every concept in this repo — derivation,
-simulations, regime map, leverage, Kelly, caveats — the executed tutorial
-is in [`notebooks/voldrag_tutorial.ipynb`](notebooks/voldrag_tutorial.ipynb).
+A full guided walkthrough of every concept in this repo — derivation,
+simulations, regime map, leverage, Kelly, caveats — is available as:
 
-GitHub's in-browser notebook renderer is currently failing for this repo
-("An error occurred"), so a pre-rendered HTML copy is committed alongside:
+- **[`notebooks/voldrag_tutorial.md`](notebooks/voldrag_tutorial.md)** — renders
+  directly on GitHub with math, tables, and plots inline. **Recommended.**
+- [`notebooks/voldrag_tutorial.ipynb`](notebooks/voldrag_tutorial.ipynb) — the
+  executable Jupyter version (GitHub's in-browser notebook renderer is
+  failing for this repo at the moment, but the file works locally).
 
-- **View the rendered tutorial:**
-  [htmlpreview.github.io/?...voldrag_tutorial.html](https://htmlpreview.github.io/?https://raw.githubusercontent.com/tdoris/voldrag/master/notebooks/voldrag_tutorial.html)
-- Or clone the repo and open the `.ipynb` locally in Jupyter.
+Regenerate both with `uv run python notebooks/build_tutorial.py`.
 
 ## What's in the repo
 

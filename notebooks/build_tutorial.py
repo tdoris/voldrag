@@ -119,9 +119,9 @@ Let's see this in a simulation. We'll use $\mu = 10\%$, $\sigma = 30\%$, over 30
     ),
     (
         "code",
-        """paths = simulate_gbm(mu=0.10, sigma=0.30, t=30.0, n_steps=30 * 12, n_paths=10_000, seed=0)
+        """paths = simulate_gbm(mu=0.10, sigma=0.30, t=30.0, n_steps=30 * 12, n_paths=5_000, seed=0)
 fig, ax = plt.subplots(figsize=(10, 6))
-plot_path_fan(paths, n_to_plot=80, ax=ax)
+plot_path_fan(paths, n_to_plot=40, ax=ax)
 plt.show()""",
     ),
     (
@@ -433,9 +433,17 @@ def execute(nb: nbf.NotebookNode) -> nbf.NotebookNode:
     return nb
 
 
+def clean(nb: nbf.NotebookNode) -> nbf.NotebookNode:
+    """Strip transient nbclient timing metadata that trips GitHub's renderer."""
+    for cell in nb.cells:
+        cell.metadata.pop("execution", None)
+    return nb
+
+
 def main() -> int:
     nb = build()
     nb = execute(nb)
+    nb = clean(nb)
     nbf.write(nb, NB_PATH)
     print(f"Wrote executed notebook to {NB_PATH}")
     return 0

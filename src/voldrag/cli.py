@@ -11,9 +11,24 @@ from voldrag.experiments import coin_flip_game, ensemble_vs_typical, sigma_sweep
 from voldrag.gbm import simulate_gbm
 from voldrag.plots import (
     plot_path_fan,
+    plot_regime_map,
     plot_sigma_sweep,
     plot_terminal_distribution,
     save,
+)
+
+# Illustrative (mu, sigma) markers for the regime map. Numbers match the
+# README's regime table plus the worked levered-strategy example.
+REGIME_MARKERS: tuple[tuple, ...] = (
+    ("T-bills", 0.04, 0.01, (8, 6)),
+    ("IG bonds", 0.05, 0.06, (8, 4)),
+    ("Equity index", 0.10, 0.18, (8, 4)),
+    ("Large-cap", 0.12, 0.35, (8, 4)),
+    ("3x ETF", 0.30, 0.60, (-50, -14)),
+    ("BTC", 0.30, 0.70, (8, 4)),
+    ("Small-cap", 0.15, 0.80, (-70, 4)),
+    ("Strategy 1x", 0.04, 0.0175, (8, -12)),
+    ("Strategy 5x", 0.195, 0.0875, (8, 4)),
 )
 
 
@@ -86,6 +101,10 @@ def main(argv: list[str] | None = None) -> int:
     fig3, ax3 = plt.subplots(figsize=(9, 5))
     plot_sigma_sweep(sweep, ax=ax3)
     save(fig3, args.figures / "03_sigma_sweep.png")
+
+    fig4, ax4 = plt.subplots(figsize=(10, 7))
+    plot_regime_map(markers=REGIME_MARKERS, ax=ax4)
+    save(fig4, args.figures / "04_regime_map.png")
 
     plt.close("all")
     print(f"Wrote figures to {args.figures.resolve()}")

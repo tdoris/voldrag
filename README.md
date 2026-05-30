@@ -121,6 +121,13 @@ return: drag has overtaken drift. The key qualitative fact is that
 drift is linear in L while drag is quadratic, so however small drag
 looks at L=1, there is always a leverage level past which it dominates.
 
+## Tutorial notebook
+
+For a full guided walkthrough of every concept in this repo — derivation,
+simulations, regime map, leverage, Kelly, caveats — open
+[`notebooks/voldrag_tutorial.ipynb`](notebooks/voldrag_tutorial.ipynb).
+It renders directly on GitHub with all plots and math embedded.
+
 ## What's in the repo
 
 ```
@@ -128,10 +135,12 @@ src/voldrag/
   analytics.py     -- closed-form quantities (drag, mean, median, etc.)
   gbm.py           -- exact log-Euler GBM + discrete multiplicative games
   experiments.py   -- ensemble-vs-typical, coin-flip game, sigma sweep
-  plots.py         -- path fans, terminal-distribution histograms, sweeps
+  plots.py         -- path fans, terminal-distribution histograms, sweeps, regime map
   cli.py           -- `voldrag-demo` entry point
 scripts/demo.py    -- equivalent script entry point
-notebooks/         -- (empty) place to drop exploratory notebooks
+notebooks/
+  voldrag_tutorial.ipynb  -- executed tutorial, viewable on GitHub
+  build_tutorial.py       -- regenerates the notebook from inline cell sources
 figures/           -- output of the demo runner
 ```
 
@@ -151,7 +160,7 @@ from voldrag.experiments import ensemble_vs_typical
 print(ensemble_vs_typical(mu=0.10, sigma=0.30, t=30).report())
 ```
 
-## Three experiments the demo runs
+## What the demo produces
 
 1. **GBM ensemble vs typical** -- 20,000 paths over 30 years at mu=10%,
    sigma=30%. The sample mean tracks `e^(mu t)`; the sample median sits
@@ -164,3 +173,8 @@ print(ensemble_vs_typical(mu=0.10, sigma=0.30, t=30).report())
 3. **Sigma sweep at fixed mu** -- the sample mean stays roughly at
    `e^(mu T)` regardless of sigma, but the sample median falls off a
    cliff as sigma grows. The picture of "volatility eating returns".
+4. **Regime map** -- a heatmap of `sigma^2 / (2 mu)` over the
+   `(mu, sigma)` plane with the regime bands shaded and reference
+   assets (and the worked levered-strategy example) marked. Lets you
+   eyeball where any candidate strategy sits relative to break-even
+   `sigma = sqrt(2 mu)`.

@@ -124,9 +124,15 @@ looks at L=1, there is always a leverage level past which it dominates.
 ## Tutorial notebook
 
 For a full guided walkthrough of every concept in this repo — derivation,
-simulations, regime map, leverage, Kelly, caveats — open
-[`notebooks/voldrag_tutorial.ipynb`](notebooks/voldrag_tutorial.ipynb).
-It renders directly on GitHub with all plots and math embedded.
+simulations, regime map, leverage, Kelly, caveats — the executed tutorial
+is in [`notebooks/voldrag_tutorial.ipynb`](notebooks/voldrag_tutorial.ipynb).
+
+GitHub's in-browser notebook renderer is currently failing for this repo
+("An error occurred"), so a pre-rendered HTML copy is committed alongside:
+
+- **View the rendered tutorial:**
+  [htmlpreview.github.io/?...voldrag_tutorial.html](https://htmlpreview.github.io/?https://raw.githubusercontent.com/tdoris/voldrag/master/notebooks/voldrag_tutorial.html)
+- Or clone the repo and open the `.ipynb` locally in Jupyter.
 
 ## What's in the repo
 
